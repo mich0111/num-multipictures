@@ -23,12 +23,12 @@ Les images à afficher devront s’appeler icon_x.png où x =1 à X, X=picture.
 
 Voici les paramètres sont à prendre en compte pour l’utilisation de ce widget.
 
-    numtype : (obligatoire), définit le type de valeurs à prendre en compte. Valeurs bornées “opened”, valeurs non bornées “closed”.
-    picture : (obligatoire) nombre d’images potentielles à afficher. Si picture=1 l’image sera la même quelque soit la valeur affichée, si picture=2 le changement d’image se fera en fonction de la valeur médiane entre min et max, si picture > 2 la répartition se fait en fonction de la plage min-max.
-    min : (obligatoire), valeur minimale à prendre en compte (affichage icon_1.png).
-    max : (obligatoire) > min, valeur maximale à prendre en compte (affichage image_X.png (X=picture)).
-    icon : (obligatoire), nom de l’image, si une des images s’appelle “image_2.png”, passer “image”).
-    folder : (obligatoire), nom du dossier de l’image (vent, eau, …).
-    theme : (optionnel), nom du thème de fond à afficher. Les fichiers de fond devront alors s’appeler fo_bkg_nom_dark.png et fo_bkg_nom_light.png. Si le paramètre est absent, les thèmes par défaut seront affichés.
+    - numtype : (obligatoire), définit le type de valeurs à prendre en compte. Valeurs bornées “opened”, valeurs non bornées “closed”.
+    - picture : (obligatoire) nombre d’images potentielles à afficher. Si picture=1 l’image sera la même quelque soit la valeur affichée, si picture=2 le changement d’image se fera en fonction de la valeur médiane entre min et max, si picture > 2 la répartition se fait en fonction de la plage min-max.
+    - min : (obligatoire), valeur minimale à prendre en compte (affichage icon_1.png).
+    - max : (obligatoire) > min, valeur maximale à prendre en compte (affichage image_X.png (X=picture)).
+    - icon : (obligatoire), nom de l’image, si une des images s’appelle “image_2.png”, passer “image”).
+    - folder : (obligatoire), nom du dossier de l’image (vent, eau, …).
+    - theme : (optionnel), nom du thème de fond à afficher. Les fichiers de fond devront alors s’appeler fo_bkg_nom_dark.png et fo_bkg_nom_light.png. Si le paramètre est absent, les thèmes par défaut seront affichés.
 
 Si l’un des paramètres est erronés, le widget vous indiquera celui à corriger.
