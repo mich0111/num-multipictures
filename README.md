@@ -1,5 +1,6 @@
 # num-multipictures
 Widget pour info numériques à images variables.
+
 Widget permettant l’affichage d’info numérique avec images variables superposées au fond pour boussole, manche à air, baromètre, …
 
 Le fond et les images superposées sont paramétrables.
