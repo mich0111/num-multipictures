@@ -177,7 +177,7 @@
 						srcTxtBanner = "white"
 						break;
 					case "10":
-						srcTxtVal = "#838383";
+						srcTxtVal = "black";
 						srcTxtBanner = "white"
 						break;
 
