@@ -5,7 +5,7 @@ Widget permettant l’affichage d’info numérique avec images variables superp
 
 Le fond et les images superposées sont paramétrables.
 
-Le bandeau de bas de vignette évolue également en fonction de la valeur et des paramètres saisis.
+Le bandeau de bas de vignette évolue également en fonction de la valeur et des paramètres saisis, il y a 10 couleurs différentes (aqua, blue, lime, yellow, lightsalmon, orange, darkorange, red, darkred, black).
 
 L’installation préalable du widget Multi-action-Defaut de @JAG est un prérequis.
 

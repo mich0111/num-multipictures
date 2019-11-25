@@ -141,39 +141,39 @@
 				// Calcul de la couleur des caractères de la valeur de la commande et du bandeau
 				switch (srcValBanner) {
 					case "1":
-						srcTxtVal = "#00ffff";
+						srcTxtVal = "aqua";
 						srcTxtBanner = "black"
 						break;
 					case "2":
-						srcTxtVal = "#2989db";
+						srcTxtVal = "blue";
 						srcTxtBanner = "white"
 						break;
 					case "3":
-						srcTxtVal = "#839f25";
+						srcTxtVal = "lime";
 						srcTxtBanner = "white"
 						break;
 					case "4":
-						srcTxtVal = "#f6ff00";
+						srcTxtVal = "yellow";
 						srcTxtBanner = "black"
 						break;
 					case "5":
-						srcTxtVal = "#ffcc99";
+						srcTxtVal = "lightsalmon";
 						srcTxtBanner = "black"
 						break;
 					case "6":
-						srcTxtVal = "#ff7300";
+						srcTxtVal = "orange";
 						srcTxtBanner = "black"
 						break;
 					case "7":
-						srcTxtVal = "#ff5a00";
+						srcTxtVal = "darkorange";
 						srcTxtBanner = "white"
 						break;
 					case "8":
-						srcTxtVal = "#da3037";
+						srcTxtVal = "red";
 						srcTxtBanner = "white"
 						break;
 					case "9":
-						srcTxtVal = "#993333";
+						srcTxtVal = "darkred";
 						srcTxtBanner = "white"
 						break;
 					case "10":
