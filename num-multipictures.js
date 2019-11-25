@@ -150,7 +150,7 @@
 						break;
 					case "3":
 						srcTxtVal = "lime";
-						srcTxtBanner = "white"
+						srcTxtBanner = "black"
 						break;
 					case "4":
 						srcTxtVal = "yellow";
@@ -166,7 +166,7 @@
 						break;
 					case "7":
 						srcTxtVal = "darkorange";
-						srcTxtBanner = "white"
+						srcTxtBanner = "black"
 						break;
 					case "8":
 						srcTxtVal = "red";
