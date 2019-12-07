@@ -45,7 +45,6 @@
 			var srcMode = "light";					// Mode du background (dark ou light)
 			var srcTxtBanner = "black"				// Couleur des caractères du bandeau
 			var srcErrorCode = "";					// Nom du paramètre en erreur s'il y a lieu
-			var	srcTemp = 0;						// Variable temporaire
 		
 			// Validation des paramètres
 			if (srcNumType != "opened" & srcNumType != "closed") {
@@ -204,7 +203,6 @@
 			} else {
 				// Affichage des textes
 				$('.cmdname#uid#').css('color',srcTxtBanner);
-				$('.value#uid#,.unite#uid#').css('color',srcTxtVal);
 				$('.value#id#,.unite#uid#').empty().text(srcState + ' #unite#');
 				
 				//Affichage du background, du bandeau et du nom de la commande
@@ -250,7 +248,7 @@
 			font-weight:bold;
 			position:absolute;
 			vertical-align:middle;
-			top:2%;
+			top:65%;
 			width:80px;
 			height:80px;
 			z-index:4;
@@ -260,7 +258,7 @@
 			font-size:1em;
 			font-weight:bold;
 			position:absolute;
-			top:2%;
+			top:65%;
 			width:80px;
 			height:80px;
 			z-index:4;
@@ -285,7 +283,7 @@
 		img.icon#uid# {
 			position:absolute;
 			margin:0;
-			top:47%;
+			top:35%;
 			left:52%;
 			max-height:50px;
 			max-width:50px;
