@@ -203,6 +203,7 @@
 			} else {
 				// Affichage des textes
 				$('.cmdname#uid#').css('color',srcTxtBanner);
+				$('.value#uid#,.unite#uid#').css('color','black');
 				$('.value#id#,.unite#uid#').empty().text(srcState + ' #unite#');
 				
 				//Affichage du background, du bandeau et du nom de la commande
