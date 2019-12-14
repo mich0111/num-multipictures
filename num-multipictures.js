@@ -13,7 +13,7 @@
 			var srcState = _options.display_value;	// Valeur de l'info numérique
 
 			// Récupération des valeurs des paramètres du widget
-			var srcNumType = ('#numtype#' != '#'+'numtype#') ? '#numtype#' : "";
+			var srcNumType = ('#numtype#'!='#'+'numtype#') ? '#numtype#' : "";
 													// Type de valeur à représenter (closed, opened) (obligatoire)
  			var fldIcon = ('#folder#'!='#'+'folder#') ? '#folder#' : "";
 													// Dossier de l'image à superposer (obligatoire)
