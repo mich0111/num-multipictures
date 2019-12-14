@@ -13,7 +13,8 @@
 			var srcState = _options.display_value;	// Valeur de l'info numérique
 
 			// Récupération des valeurs des paramètres du widget
-			var srcNumType = "#numtype#";			// Type de valeur à représenter (closed, opened) (obligatoire)
+			var srcNumType = ('#numtype#' != '#'+'numtype#') ? '#numtype#' : "";
+													// Type de valeur à représenter (closed, opened) (obligatoire)
  			var fldIcon = ('#folder#'!='#'+'folder#') ? '#folder#' : "";
 													// Dossier de l'image à superposer (obligatoire)
  			var srcIcon = ('#icon#'!='#'+'icon#') ? '#icon#' : "";
@@ -136,37 +137,19 @@
 				// Calcul de la couleur des caractères de la valeur de la commande et du bandeau
 				switch (srcValBanner) {
 					case "1":
-						srcTxtVal = "aqua";
 						break;
 					case "2":
-						srcTxtVal = "blue";
 						srcTxtBanner = "white"
 						break;
 					case "3":
-						srcTxtVal = "lime";
-						break;
 					case "4":
-						srcTxtVal = "yellow";
-						break;
 					case "5":
-						srcTxtVal = "lightsalmon";
-						break;
 					case "6":
-						srcTxtVal = "orange";
-						break;
 					case "7":
-						srcTxtVal = "darkorange";
 						break;
 					case "8":
-						srcTxtVal = "red";
-						srcTxtBanner = "white"
-						break;
 					case "9":
-						srcTxtVal = "darkred";
-						srcTxtBanner = "white"
-						break;
 					case "10":
-						srcTxtVal = "black";
 						srcTxtBanner = "white"
 						break;
 				}
