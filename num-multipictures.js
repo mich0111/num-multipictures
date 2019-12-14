@@ -13,24 +13,24 @@
 			var srcState = _options.display_value;	// Valeur de l'info numérique
 
 			// Récupération des valeurs des paramètres du widget
-			var srcNumType = "#numtype#";			// Type de valeur à représenter (closed, opened, single) (obligatoire)
+			var srcNumType = "#numtype#";			// Type de valeur à représenter (closed, opened) (obligatoire)
  			var fldIcon = ('#folder#'!='#'+'folder#') ? '#folder#' : "";
 													// Dossier de l'image à superposer (obligatoire)
  			var srcIcon = ('#icon#'!='#'+'icon#') ? '#icon#' : "";
 													// Image à superposer (obligatoire)
-			var srcTheme = ('#theme#'!='#'+'theme#') ? '#theme#': "";
-													// Thème du background s'il y a lieu (optionnel)
 			var srcPicture = (is_numeric('#picture#')) ? parseFloat('#picture#') : null;
 													// Nombre d'images à afficher (obligatoire)
 			var srcMinVal = (is_numeric('#min#')) ? parseFloat('#min#') : null;
 													// Valeur minimale de la plage de mesure à prendre en compte (obligatoire)
 			var srcMaxVal = (is_numeric('#max#')) ? parseFloat('#max#') : null;       
 													// Valeur maximale de la plage de mesure à prendre en compte (obligatoire)
+			var srcTheme = ('#theme#'!='#'+'theme#') ? '#theme#': "";
+													// Thème du background s'il y a lieu (optionnel)
 
 			var fldBkg = 'data/customTemplates/dashboard/cmd.action.other.Multi-action-Defaut/fond/';
 													// Dossier des images de background
 			var srcMode = "light"					// Mode du background (dark ou light)
-			var srcIconID = "1";						// Rang de l'image à afficher
+			var srcIconID = "1";					// Rang de l'image à afficher
 			var srcLevelIc = 1;						// Niveau de l'image à afficher après calcul
 			var srcMinLevel = 1;					// Niveau min de l'image et du bandeau (forcément 1)
 			var srcField = srcMaxVal - srcMinVal;	// Plage totale de calcul de l'image de background, permet de traiter le cas des bornes négatives
@@ -64,17 +64,24 @@
 			}
 			
 			if (srcErrorCode != "") {
+				// Affichage des éléments d'erreur
 				srcIcon = "error";
+				$('.background#uid#').empty().attr('src', fldBkg + 'fo_oups1.png');
+				$('.banner#uid#').empty().attr('src', fldBkg + 'fo_banner_8.png');
+				$('.cmdname#uid#,.value#id#,.unite#uid#').hide();
+				$('.icon#uid#').hide();
+				$('.error#uid#').css('color','white');
+				$('.error#uid#').empty().text(srcErrorCode);
 			} else {
 				// Initialisation du nom du dossier des images
 				fldIcon = 'data/customTemplates/dashboard/cmd.action.other.Multi-action-Defaut/' + fldIcon + '/';
 
-				// Calcul en fonction du type de variable numérique "opened"-"closed" et du nombre d'images
+				// Calcul en fonction du type de variable numérique "opened", "closed" et du nombre d'images
 
 				// Initialisation du niveau du bandeau
-				srcLevelBn = Math.round(srcStateShift/srcStepBn)+1;
+				srcLevelBn = Math.round(srcStateShift/srcStepBn) + 1;
 
-				if (srcPicture == "1") {			// Image unique
+				if (srcPicture == 1) {				// Image unique
 					srcIconID = "_1";
 					if (srcState <= srcMinVal) {
 						srcValBanner = srcMinLevel.toString();
@@ -102,37 +109,34 @@
 					else {
 						srcValBanner = srcLevelBn.toString();
 					}
-				} else {							// Images multiples
+				} else if (srcNumType == 'opened') {// Images multiples
+													// Cas 'opened'
 					// Calcul du logo à afficher
-					switch (srcNumType) {
-						case "opened":
-							srcStepIc = srcField/(srcPicture-2);
-							srcLevelIc = Math.trunc(srcStateShift/srcStepIc)+2;
-							if (srcState <= srcMinVal || srcLevelIc < srcMinLevel) {
-								srcIconID = '_' + srcMinLevel.toString();
-								srcValBanner = srcMinLevel.toString();
-							}
-							else if (srcState >= srcMaxVal || srcLevelIc > srcPicture) {
-								srcIconID = '_' + srcPicture.toString();
-								srcValBanner = srcMaxLevelBn.toString();
-							}
-							else {
-								srcIconID = '_' + srcLevelIc.toString();
-								srcValBanner = srcLevelBn.toString();
-							}
-							break;
-						case "closed":
-							srcStepIc = (srcField/srcPicture);
-							srcLevelIc = Math.round(srcStateShift/srcStepIc)+1;
-							if (srcState <= srcMinVal || srcState >= srcMaxVal){
-								srcIconID = '_' + srcMinLevel.toString();
-								srcValBanner = srcMinLevel.toString();
-							}
-							else {
-								srcIconID = '_' + srcLevelIc.toString();
-								srcValBanner = srcLevelBn.toString();
-							}
-							break;
+					srcStepIc = srcField / (srcPicture - 2);
+					srcLevelIc = Math.trunc(srcStateShift / srcStepIc) + 2;
+					if ((srcState <= srcMinVal) || (srcLevelIc < srcMinLevel)) {
+						srcIconID = '_' + srcMinLevel.toString();
+						srcValBanner = srcMinLevel.toString();
+					}
+					else if ((srcState >= srcMaxVal) || (srcLevelIc > srcPicture)) {
+						srcIconID = '_' + srcPicture.toString();
+						srcValBanner = srcMaxLevelBn.toString();
+					}
+					else {
+						srcIconID = '_' + srcLevelIc.toString();
+						srcValBanner = srcLevelBn.toString();
+					}
+				} else {							// Cas 'closed'
+					// Calcul du logo à afficher
+					srcStepIc = (srcField / srcPicture);
+					srcLevelIc = Math.round(srcStateShift / srcStepIc) + 1;
+					if ((srcState <= srcMinVal) || (srcState >= srcMaxVal)){
+						srcIconID = '_' + srcMinLevel.toString();
+						srcValBanner = srcMinLevel.toString();
+					}
+					else {
+						srcIconID = '_' + srcLevelIc.toString();
+						srcValBanner = srcLevelBn.toString();
 					}
 				}
 
@@ -141,7 +145,6 @@
 				switch (srcValBanner) {
 					case "1":
 						srcTxtVal = "aqua";
-						srcTxtBanner = "black"
 						break;
 					case "2":
 						srcTxtVal = "blue";
@@ -149,23 +152,18 @@
 						break;
 					case "3":
 						srcTxtVal = "lime";
-						srcTxtBanner = "black"
 						break;
 					case "4":
 						srcTxtVal = "yellow";
-						srcTxtBanner = "black"
 						break;
 					case "5":
 						srcTxtVal = "lightsalmon";
-						srcTxtBanner = "black"
 						break;
 					case "6":
 						srcTxtVal = "orange";
-						srcTxtBanner = "black"
 						break;
 					case "7":
 						srcTxtVal = "darkorange";
-						srcTxtBanner = "black"
 						break;
 					case "8":
 						srcTxtVal = "red";
@@ -179,28 +177,17 @@
 						srcTxtVal = "black";
 						srcTxtBanner = "white"
 						break;
-
 				}
-			}
 			
-			// Sélection du mode clair ou sombre
-			if ($('body')[0].hasAttribute('data-theme')) {
-				if ($('body').attr('data-theme').endsWith('Light')) {
-					srcMode = "light";
-				} else {
-					srcMode = "dark"
+				// Sélection du mode clair ou sombre
+				if ($('body')[0].hasAttribute('data-theme')) {
+					if ($('body').attr('data-theme').endsWith('Light')) {
+						srcMode = "light";
+					} else {
+						srcMode = "dark"
+					}
 				}
-			}
 
-			if (srcErrorCode != "") {
-				// Affichage des éléments d'erreur
-				$('.background#uid#').empty().attr('src', fldBkg + 'fo_oups1.png');
-				$('.banner#uid#').empty().attr('src', fldBkg + 'fo_banner_8.png');
-				$('.cmdname#uid#,.value#id#,.unite#uid#').hide();
-				$('.icon#uid#').hide();
-				$('.error#uid#').css('color','white');
-				$('.error#uid#').empty().text(srcErrorCode);
-			} else {
 				// Affichage des textes
 				$('.cmdname#uid#').css('color',srcTxtBanner);
 				$('.value#uid#,.unite#uid#').css('color','black');
@@ -215,7 +202,6 @@
 				$('.banner#uid#').empty().attr("src", fldBkg + 'fo_banner_' + srcValBanner + '.png');
 				$('.icon#uid#').empty().attr('src', fldIcon + srcIcon + srcIconID + '.png');
 			}
-
 			$('.cmd[data-cmd_uid=#uid#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate);
 		}
 		jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
