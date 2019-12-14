@@ -1,23 +1,20 @@
 <div style="padding:0px; margin:2px 2px; width:80px; height:80px;" class="cmd #history# container-fluid tooltips cmd-widget" data-type="info" data-version="#version#" data-eqLogic_id="#eqLogic_id#" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#">
- 	<img class="background#uid#"/>
- 	<img class="banner#uid#"/>
+	<img class="background#uid#"/>
+	<img class="banner#uid#"/>
 	<img class="icon#uid#" style="transform:translate(-50%,-50%);" />
 	<div class="cmdname#uid#">#name_display#</div>
 	<div class="value#uid#"style=""></div>
 	<div class="unite#uid#">#unite#</div>
 	<div class="error#uid#"/>
- 
+
 	<script>
 		jeedom.cmd.update['#id#'] = function(_options){
-			// Récupération de srcState
-			var srcState = _options.display_value;	// Valeur de l'info numérique
-
 			// Récupération des valeurs des paramètres du widget
 			var srcNumType = ('#numtype#'!='#'+'numtype#') ? '#numtype#' : "";
 													// Type de valeur à représenter (closed, opened) (obligatoire)
- 			var fldIcon = ('#folder#'!='#'+'folder#') ? '#folder#' : "";
+			var fldIcon = ('#folder#'!='#'+'folder#') ? '#folder#' : "";
 													// Dossier de l'image à superposer (obligatoire)
- 			var srcIcon = ('#icon#'!='#'+'icon#') ? '#icon#' : "";
+			var srcIcon = ('#icon#'!='#'+'icon#') ? '#icon#' : "";
 													// Image à superposer (obligatoire)
 			var srcPicture = (is_numeric('#picture#')) ? parseFloat('#picture#') : null;
 													// Nombre d'images à afficher (obligatoire)
@@ -27,6 +24,9 @@
 													// Valeur maximale de la plage de mesure à prendre en compte (obligatoire)
 			var srcTheme = ('#theme#'!='#'+'theme#') ? '#theme#': "";
 													// Thème du background s'il y a lieu (optionnel)
+
+			// Récupération de srcState
+			var srcState = _options.display_value;	// Valeur de l'info numérique
 
 			var fldBkg = 'data/customTemplates/dashboard/cmd.action.other.Multi-action-Defaut/fond/';
 													// Dossier des images de background
@@ -41,7 +41,7 @@
 			var srcLevelBn = 1;						// Niveau du bandeau calculé
 			var srcStateShift = srcState - srcMinVal;
 													// State décalé en fonction du Min pour calculer l'image et le bandeau
-			var srcTxtVal = "";						// Couleur des caractères de la valeur de la commande
+			var srcTxtVal = "black";				// Couleur des caractères de la valeur de la commande
 			var srcValBanner = "";					// Couleur des caractère du bandeau
 			var srcMode = "light";					// Mode du background (dark ou light)
 			var srcTxtBanner = "black"				// Couleur des caractères du bandeau
@@ -137,10 +137,6 @@
 				// Calcul de la couleur des caractères de la valeur de la commande et du bandeau
 				switch (srcValBanner) {
 					case "1":
-						break;
-					case "2":
-						srcTxtBanner = "white"
-						break;
 					case "3":
 					case "4":
 					case "5":
@@ -150,6 +146,7 @@
 					case "8":
 					case "9":
 					case "10":
+					case "2":
 						srcTxtBanner = "white"
 						break;
 				}
