@@ -85,28 +85,23 @@
 					srcIconID = "_1";
 					if (srcState <= srcMinVal) {
 						srcValBanner = srcMinLevel.toString();
-					}
-					else if (srcState >= srcMaxVal) {
+					} else if (srcState >= srcMaxVal) {
 						srcValBanner = srcMaxLevelBn.toString();
-					}
-					else {
+					} else {
 						srcValBanner = srcLevelBn.toString();
 					}
-				}
-				else if (srcPicture == 2) {			// Images doubles
+				} else if (srcPicture == 2) {			// Images doubles
 					// Calcul de l'image à afficher selon la valeur médiane
-					if (srcStateShift <= srcField/2) {
+					if (srcStateShift <= srcField / 2) {
 						srcIconID = "_1";
 					} else {
 						srcIconID = "_2";
 					}
 					if (srcState <= srcMinVal) {
 						srcValBanner = srcMinLevel.toString();
-					}
-					else if (srcState >= srcMaxVal) {
+					} else if (srcState >= srcMaxVal) {
 						srcValBanner = srcMaxLevelBn.toString();
-					}
-					else {
+					} else {
 						srcValBanner = srcLevelBn.toString();
 					}
 				} else if (srcNumType == 'opened') {// Images multiples
@@ -117,12 +112,10 @@
 					if ((srcState <= srcMinVal) || (srcLevelIc < srcMinLevel)) {
 						srcIconID = '_' + srcMinLevel.toString();
 						srcValBanner = srcMinLevel.toString();
-					}
-					else if ((srcState >= srcMaxVal) || (srcLevelIc > srcPicture)) {
+					} else if ((srcState >= srcMaxVal) || (srcLevelIc > srcPicture)) {
 						srcIconID = '_' + srcPicture.toString();
 						srcValBanner = srcMaxLevelBn.toString();
-					}
-					else {
+					} else {
 						srcIconID = '_' + srcLevelIc.toString();
 						srcValBanner = srcLevelBn.toString();
 					}
@@ -130,11 +123,10 @@
 					// Calcul du logo à afficher
 					srcStepIc = (srcField / srcPicture);
 					srcLevelIc = Math.round(srcStateShift / srcStepIc) + 1;
-					if ((srcState <= srcMinVal) || (srcState >= srcMaxVal)){
+					if ((srcState <= srcMinVal) || (srcState >= srcMaxVal)) {
 						srcIconID = '_' + srcMinLevel.toString();
 						srcValBanner = srcMinLevel.toString();
-					}
-					else {
+					} else {
 						srcIconID = '_' + srcLevelIc.toString();
 						srcValBanner = srcLevelBn.toString();
 					}
