@@ -22,8 +22,24 @@
 													// Valeur minimale de la plage de mesure à prendre en compte (obligatoire)
 			var srcMaxVal = (is_numeric('#max#')) ? parseFloat('#max#') : null;       
 													// Valeur maximale de la plage de mesure à prendre en compte (obligatoire)
+			var srcColBanMin = ('#colbanmin#'!='#'+'colbanmin#') ? '#colbanmin#': "";
+													// Couleur du bandeau si Min (optionnel) - Défaut "aqua"
+			var srcColBanMax = ('#colbanmax#'!='#'+'colbanmax#') ? '#colbanmax#': "";
+													// Couleur du bandeau si Max (optionnel)- Défaut "red"
+			var srcColBanIn = ('#colbanin#'!='#'+'colbanin#') ? '#colbanin#': "";
+													// Couleur du bandeau si à l'intérieur des marges (optionnel) - Défaut "lime"
+			var srcColTxtBnMin = ('#coltxtbnmin#'!='#'+'coltxtbnmin#') ? '#coltxtbnmin#': "";
+													// Couleur du texte bandeau si Min (optionnel) - Défaut "black"
+			var srcColTxtBnMax = ('#coltxtbnmax#'!='#'+'coltxtbnmax#') ? '#coltxtbnmax#': "";
+													// Couleur du texte bandeau si Max (optionnel) - Défaut "black"
+			var srcColTxtBnIn = ('#coltxtbnin#'!='#'+'coltxtbnin#') ? '#coltxtbnin#': "";
+													// Couleur du texte bandeau si à l'intérieur des marges (optionnel) - Défaut "black"
+			var srcBlinkMax = ('#blinkmax#'!='#'+'blinkmax#') ? '#blinkmax#': "";
+													// Clignotement si Max (optionnel) - Défaut "no"
+			var srcBlinkMin = ('#blinkmin#'!='#'+'blinkmin#') ? '#blinkmin#': "";
+													// Clignotement si Min (optionnel) - Défaut "no"
 			var srcTheme = ('#theme#'!='#'+'theme#') ? '#theme#': "";
-													// Thème du background s'il y a lieu (optionnel)
+													// Thème du background s'il y a lieu (optionnel) - Défaut standard
 
 			// Récupération de srcState
 			var srcState = _options.display_value;	// Valeur de l'info numérique
@@ -35,16 +51,13 @@
 			var srcLevelIc = 1;						// Niveau de l'image à afficher après calcul
 			var srcMinLevel = 1;					// Niveau min de l'image et du bandeau (forcément 1)
 			var srcField = srcMaxVal - srcMinVal;	// Plage totale de calcul de l'image de background, permet de traiter le cas des bornes négatives
-			var srcStepBn = srcField/8;				// Intervalle entre 2 backgrounds différents, 8 correspond au nombre d'intervalle pour 10 backgrounds
 			var srcStepIc = 1;						// Intervalle entre 2 images différentes
-			var srcMaxLevelBn = 10;					// Niveau max du bandeau - 10 bandeaux
-			var srcLevelBn = 1;						// Niveau du bandeau calculé
 			var srcStateShift = srcState - srcMinVal;
 													// State décalé en fonction du Min pour calculer l'image et le bandeau
-			var srcTxtVal = "black";				// Couleur des caractères de la valeur de la commande
-			var srcValBanner = "";					// Couleur des caractère du bandeau
 			var srcMode = "light";					// Mode du background (dark ou light)
-			var srcTxtBanner = "black"				// Couleur des caractères du bandeau
+			var srcColBanner = ""					// Couleur des caractères du bandeau
+			var srcColTxtBanner = ""				// Couleur des caractères du bandeau
+			var srcBlink = "";						// Clignotement
 			var srcErrorCode = "";					// Nom du paramètre en erreur s'il y a lieu
 		
 			// Validation des paramètres
@@ -68,89 +81,12 @@
 				// Affichage des éléments d'erreur
 				srcIcon = "error";
 				$('.background#uid#').empty().attr('src', fldBkg + 'fo_oups1.png');
-				$('.banner#uid#').empty().attr('src', fldBkg + 'fo_banner_8.png');
+				$('.banner#uid#').css('background-color','red');
 				$('.cmdname#uid#,.value#id#,.unite#uid#').hide();
 				$('.icon#uid#').hide();
 				$('.error#uid#').css('color','white');
 				$('.error#uid#').empty().text(srcErrorCode);
 			} else {
-				// Initialisation du nom du dossier des images
-				fldIcon = 'data/customTemplates/dashboard/cmd.action.other.Multi-action-Defaut/' + fldIcon + '/';
-
-				// Calcul en fonction du type de variable numérique "opened", "closed" et du nombre d'images
-
-				// Initialisation du niveau du bandeau
-				srcLevelBn = Math.round(srcStateShift/srcStepBn) + 1;
-
-				if (srcPicture == 1) {				// Image unique
-					srcIconID = "_1";
-					if (srcState <= srcMinVal) {
-						srcValBanner = srcMinLevel.toString();
-					} else if (srcState >= srcMaxVal) {
-						srcValBanner = srcMaxLevelBn.toString();
-					} else {
-						srcValBanner = srcLevelBn.toString();
-					}
-				} else if (srcPicture == 2) {			// Images doubles
-					// Calcul de l'image à afficher selon la valeur médiane
-					if (srcStateShift <= srcField / 2) {
-						srcIconID = "_1";
-					} else {
-						srcIconID = "_2";
-					}
-					if (srcState <= srcMinVal) {
-						srcValBanner = srcMinLevel.toString();
-					} else if (srcState >= srcMaxVal) {
-						srcValBanner = srcMaxLevelBn.toString();
-					} else {
-						srcValBanner = srcLevelBn.toString();
-					}
-				} else if (srcNumType == 'opened') {// Images multiples
-													// Cas 'opened'
-					// Calcul du logo à afficher
-					srcStepIc = srcField / (srcPicture - 2);
-					srcLevelIc = Math.trunc(srcStateShift / srcStepIc) + 2;
-					if ((srcState <= srcMinVal) || (srcLevelIc < srcMinLevel)) {
-						srcIconID = '_' + srcMinLevel.toString();
-						srcValBanner = srcMinLevel.toString();
-					} else if ((srcState >= srcMaxVal) || (srcLevelIc > srcPicture)) {
-						srcIconID = '_' + srcPicture.toString();
-						srcValBanner = srcMaxLevelBn.toString();
-					} else {
-						srcIconID = '_' + srcLevelIc.toString();
-						srcValBanner = srcLevelBn.toString();
-					}
-				} else {							// Cas 'closed'
-					// Calcul du logo à afficher
-					srcStepIc = (srcField / srcPicture);
-					srcLevelIc = Math.round(srcStateShift / srcStepIc) + 1;
-					if ((srcState <= srcMinVal) || (srcState >= srcMaxVal)) {
-						srcIconID = '_' + srcMinLevel.toString();
-						srcValBanner = srcMinLevel.toString();
-					} else {
-						srcIconID = '_' + srcLevelIc.toString();
-						srcValBanner = srcLevelBn.toString();
-					}
-				}
-
-
-				// Calcul de la couleur des caractères de la valeur de la commande et du bandeau
-				switch (srcValBanner) {
-					case "1":
-					case "3":
-					case "4":
-					case "5":
-					case "6":
-					case "7":
-						break;
-					case "8":
-					case "9":
-					case "10":
-					case "2":
-						srcTxtBanner = "white"
-						break;
-				}
-			
 				// Sélection du mode clair ou sombre
 				if ($('body')[0].hasAttribute('data-theme')) {
 					if ($('body').attr('data-theme').endsWith('Light')) {
@@ -160,19 +96,79 @@
 					}
 				}
 
-				// Affichage des textes
-				$('.cmdname#uid#').css('color',srcTxtBanner);
-				$('.value#uid#,.unite#uid#').css('color','black');
-				$('.value#id#,.unite#uid#').empty().text(srcState + ' #unite#');
-				
-				//Affichage du background, du bandeau et du nom de la commande
+				// Initialisation du nom du dossier des images
+				fldIcon = 'data/customTemplates/dashboard/cmd.action.other.Multi-action-Defaut/' + fldIcon + '/';
+
+				// Initialisation de la couleur du bandeau, des caractères de la valeur et du clignotement
+				if ((srcNumType == "closed") || ((srcState > srcMinVal) && (srcState < srcMaxVal))) {
+					// Borné ou dans les marges
+					srcColBanner = ((srcColBanIn != "") && (srcColBanIn != null)) ? srcColBanIn : "lime";
+					srcColTxtBanner = ((srcColTxtBnMax != "") && (srcColTxtBnMax != null)) ? srcColTxtBnMax : "black";
+					srcBlink = "no";
+				} else if ((srcNumType == "opened") && (srcState <= srcMinVal)) {
+					// Non borné et inférieur ou égal à min
+					srcColBanner = ((srcColBanMin != "") && (srcColBanMin != null)) ? srcColBanMin : "aqua";
+					srcColTxtBanner = ((srcColTxtBnMin != "") && (srcColTxtBnMin != null)) ? srcColTxtBnMin : "black";
+					srcBlink = (srcBlinkMin == "yes") ? srcBlinkMin : "no";
+				} else {
+					// Non borné et supérieur ou égal à Max
+					srcColBanner = ((srcColBanMax != "") && (srcColBanMax != null)) ? srcColBanMax : "red";
+					srcColTxtBanner = ((srcColTxtBnMax != "") && (srcColTxtBnMax != null)) ? srcColTxtBnMax : "black";
+					srcBlink = (srcBlinkMax == "yes") ? srcBlinkMax : "no";
+				}
+
+				// Calcul de l'image en fonction du type de variable numérique "opened", "closed" et du nombre d'images
+				if (srcPicture == 1) {				// Image unique
+					srcIconID = "_1";
+				} else if (srcPicture == 2) {		// Images doubles
+					// Calcul de l'image à afficher selon la valeur médiane
+					srcIconID = (srcStateShift <= srcField / 2) ? "_1" : "_2";
+				} else if (srcNumType == 'opened') {// Images multiples
+					// Cas 'opened'
+					srcStepIc = srcField / (srcPicture - 2);
+					srcLevelIc = Math.trunc(srcStateShift / srcStepIc) + 2;
+					if ((srcState <= srcMinVal) || (srcLevelIc < srcMinLevel)) {
+						srcIconID = '_' + srcMinLevel.toString();
+					} else if ((srcState >= srcMaxVal) || (srcLevelIc > srcPicture)) {
+						srcIconID = '_' + srcPicture.toString();
+					} else {
+						srcIconID = '_' + srcLevelIc.toString();
+					}
+				} else {
+					// Cas 'closed'
+					srcStepIc = (srcField / srcPicture);
+					srcLevelIc = Math.round(srcStateShift / srcStepIc) + 1;
+					if ((srcState <= srcMinVal) || (srcState >= srcMaxVal)) {
+						srcIconID = '_' + srcMinLevel.toString();
+					} else {
+						srcIconID = '_' + srcLevelIc.toString();
+					}
+				}
+
+				// Affichage du background
 				if (srcTheme != "") {
 					srcTheme = srcTheme + '_';
 				}
-				
 				$('.background#uid#').empty().attr("src", fldBkg + 'fo_bkg_' + srcTheme + srcMode + '.png');
-				$('.banner#uid#').empty().attr("src", fldBkg + 'fo_banner_' + srcValBanner + '.png');
+
+				// Affichage du bandeau et de ses options
+				$('.banner#uid#').css('background-color', srcColBanner);
+				if (srcBlink == 'yes') {					
+					// Clignotement
+					$('.banner#uid#').addClass('blinking');
+				}
+				else {
+					$('.banner#uid#').removeClass('blinking');
+				}
+				$('.banner#uid#').empty().attr("src", fldBkg + 'fo_banner.png');
+
+				// Affichage de l'icone et de ses options
 				$('.icon#uid#').empty().attr('src', fldIcon + srcIcon + srcIconID + '.png');
+
+				// Affichage des textes
+				$('.cmdname#uid#').css('color', srcColTxtBanner);
+				$('.value#uid#,.unite#uid#').css('color','black');
+				$('.value#id#,.unite#uid#').empty().text(srcState + ' #unite#');
 			}
 			$('.cmd[data-cmd_uid=#uid#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate);
 		}
@@ -235,10 +231,10 @@
 		img.banner#uid# {
 			position:absolute;
 			border-radius:0px 0px 6px 6px;
-			top:0%;
+			bottom:0%;
 			left:0%;
 			width:80px;
-			height:80px;
+			height:16px;
 			z-index:2;
 		}
 		img.icon#uid# {
@@ -250,5 +246,10 @@
 			max-width:50px;
 			z-index:2;
 		}
+		@keyframes blinking {
+			20% {opacity:0;}
+			100% {opacity:1;}
+		}
+		.blinking {animation:blinking infinite 1s;}
 	</style>
 </div>
