@@ -46,7 +46,7 @@
 
 			var fldBkg = 'data/customTemplates/dashboard/cmd.action.other.Multi-action-Defaut/fond/';
 													// Dossier des images de background
-			var srcMode = "light"					// Mode du background (dark ou light)
+			var srcMode = "light";					// Mode du background (dark ou light)
 			var srcIconID = "1";					// Rang de l'image à afficher
 			var srcLevelIc = 1;						// Niveau de l'image à afficher après calcul
 			var srcMinLevel = 1;					// Niveau min de l'image et du bandeau (forcément 1)
