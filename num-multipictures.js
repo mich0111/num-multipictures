@@ -55,8 +55,8 @@
 			var srcStateShift = srcState - srcMinVal;
 													// State décalé en fonction du Min pour calculer l'image et le bandeau
 			var srcMode = "light";					// Mode du background (dark ou light)
-			var srcColBanner = ""					// Couleur des caractères du bandeau
-			var srcColTxtBanner = ""				// Couleur des caractères du bandeau
+			var srcColBanner = "";					// Couleur des caractères du bandeau
+			var srcColTxtBanner = "";				// Couleur des caractères du bandeau
 			var srcBlink = "";						// Clignotement
 			var srcErrorCode = "";					// Nom du paramètre en erreur s'il y a lieu
 		
