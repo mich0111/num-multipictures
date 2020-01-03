@@ -103,7 +103,7 @@
 				if ((srcNumType == "closed") || ((srcState > srcMinVal) && (srcState < srcMaxVal))) {
 					// Borné ou dans les marges
 					srcColBanner = ((srcColBanIn != "") && (srcColBanIn != null)) ? srcColBanIn : "lime";
-					srcColTxtBanner = ((srcColTxtBnIn != "") && (srcColTxtBnIn != null)) ? srcColTxtBnIn : "black";
+					srcColTxtBanner = ((srcColTxtBnMax != "") && (srcColTxtBnMax != null)) ? srcColTxtBnMax : "black";
 					srcBlink = "no";
 				} else if ((srcNumType == "opened") && (srcState <= srcMinVal)) {
 					// Non borné et inférieur ou égal à min
