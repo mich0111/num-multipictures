@@ -34,7 +34,7 @@ Voici les paramètres à prendre en compte pour l’utilisation de ce widget.
     - colbanin : (optionnel), couleur du bandeau si la valeur de la commande entre min et max - Par défaut "lime".
     - coltxtbnmin : (optionnel), couleur du texte du bandeau si la valeur de la commande <= min - Par défaut "black".
     - coltxtbnmax : (optionnel), couleur du texte du bandeau si la valeur de la commande >= max - Par défaut "black".
-    - coltxtbnmin : (optionnel), couleur du texte du bandeau si la valeur de la commande entre min et max - Par défaut "black".
+    - coltxtbnin : (optionnel), couleur du texte du bandeau si la valeur de la commande entre min et max - Par défaut "black".
     - blinkmin : (optionnel), clignotement du bandeau si opened et <= min.
     - blinkmax : (optionnel), clignotement du bandeau si opened et >= max.
     - theme : (optionnel), nom du thème de fond à afficher. Les fichiers de fond devront alors s’appeler fo_bkg_nom_dark.png et fo_bkg_nom_light.png. Si le paramètre est absent, les thèmes par défaut seront affichés.
