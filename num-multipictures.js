@@ -3,8 +3,8 @@
 	<img class="banner#uid#"/>
 	<img class="icon#uid#" style="transform:translate(-50%,-50%);" />
 	<div class="cmdname#uid#">#name_display#</div>
-	<div class="value#uid#"style=""></div>
-	<div class="unite#uid#">#unite#</div>
+	<div class="value#uid#" style=""></div>
+	<div class="unite#uid#" style=""></div>
 	<div class="error#uid#"/>
 
 	<script>
@@ -82,7 +82,7 @@
 				srcIcon = "error";
 				$('.background#uid#').empty().attr('src', fldBkg + 'fo_oups1.png');
 				$('.banner#uid#').css('background-color','red');
-				$('.cmdname#uid#,.value#id#,.unite#uid#').hide();
+				$('.cmdname#uid#,.value#uid#,.unite#uid#').hide();
 				$('.icon#uid#').hide();
 				$('.error#uid#').css('color','white');
 				$('.error#uid#').empty().text(srcErrorCode);
@@ -167,8 +167,8 @@
 
 				// Affichage des textes
 				$('.cmdname#uid#').css('color', srcColTxtBanner);
-				$('.value#uid#,.unite#uid#').css('color','black');
-				$('.value#id#,.unite#uid#').empty().text(srcState + ' #unite#');
+				$('.value#uid#').css('color','black');
+				$('.value#uid#').empty().text(srcState + ' #unite#');
 			}
 			$('.cmd[data-cmd_uid=#uid#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate);
 		}
