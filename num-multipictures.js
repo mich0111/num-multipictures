@@ -184,7 +184,6 @@
 			top:82%;
 			left:0%;
 			width:80px;
-			height:80px;
 			z-index:4;
 		}
 		div.error#uid# {
@@ -195,7 +194,6 @@
 			top:82%;
 			left:0%;
 			width:80px;
-			height:80px;
 			z-index:4;
 		}		
 		div.value#uid# {
@@ -205,7 +203,6 @@
 			vertical-align:middle;
 			top:65%;
 			width:80px;
-			height:80px;
 			z-index:4;
 			letter-spacing:0px;
 		}
@@ -215,7 +212,6 @@
 			position:absolute;
 			top:65%;
 			width:80px;
-			height:80px;
 			z-index:4;
 			letter-spacing:0px;
 		}
